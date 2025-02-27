@@ -1,0 +1,210 @@
+{
+  "info": {
+    "_postman_id": "1234567-89ab-cdef-0123-456789abcdef",
+    "name": "Todo-List-API-Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "获取所有待办事项",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/todos?page=0&size=10&isCompleted=false",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "todos"],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            },
+            {
+              "key": "isCompleted",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"content\": [\n    {\n      \"id\": 1,\n      \"value\": \"完成Java作业\",\n      \"isCompleted\": false\n    },\n    {\n      \"id\": 2,\n      \"value\": \"阅读Spring文档\",\n      \"isCompleted\": false\n    }\n  ],\n  \"total\": 20,\n  \"currentPage\": 0,\n  \"pageSize\": 10\n}",
+          "header": []
+        }
+      ]
+    },
+    {
+      "name": "添加待办事项",
+      "item": [
+        {
+          "name": "成功添加待办事项",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"新的待办事项\",\n  \"isCompleted\": false\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/todos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "todos"]
+            }
+          },
+          "response": [
+            {
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": 5,\n  \"value\": \"新的待办事项\",\n  \"isCompleted\": false\n}",
+              "header": []
+            }
+          ]
+        },
+        {
+          "name": "添加无效待办事项（空值）",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"\",\n  \"isCompleted\": false\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/todos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "todos"]
+            }
+          },
+          "response": [
+            {
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{}",
+              "header": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "更新待办事项状态",
+      "item": [
+        {
+          "name": "成功更新待办事项状态",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/todos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "todos", "1"]
+            }
+          },
+          "response": [
+            {
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": 1,\n  \"value\": \"完成Java作业\",\n  \"isCompleted\": true\n}",
+              "header": []
+            }
+          ]
+        },
+        {
+          "name": "更新不存在的待办事项",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/todos/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "todos", "999"]
+            }
+          },
+          "response": [
+            {
+              "status": "Not Found",
+              "code": 404,
+              "body": "{}",
+              "header": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "删除待办事项",
+      "item": [
+        {
+          "name": "成功删除待办事项",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/todos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "todos", "1"]
+            }
+          },
+          "response": [
+            {
+              "status": "No Content",
+              "code": 204,
+              "body": null,
+              "header": []
+            }
+          ]
+        },
+        {
+          "name": "删除不存在的待办事项",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/todos/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "todos", "999"]
+            }
+          },
+          "response": [
+            {
+              "status": "Not Found",
+              "code": 404,
+              "body": "{}",
+              "header": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
