@@ -68,3 +68,34 @@ Todo-List-Backend/
 - `POST /api/todos`: 创建新的待办事项
 - `PUT /api/todos/{id}`: 更新待办事项状态
 - `DELETE /api/todos/{id}`: 删除待办事项
+
+### dockerfile
+   ```
+   FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+
+# 从target目录复制jar包
+COPY ./target/*.jar app.jar
+
+EXPOSE 8080
+
+# 添加环境变量支持
+ENTRYPOINT ["java","-jar","app.jar","--spring.profiles.active=${SPRING_PROFILES_ACTIVE:dev}"]FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+
+# 从target目录复制jar包
+COPY ./target/*.jar app.jar
+
+EXPOSE 8080
+
+# 添加环境变量支持
+ENTRYPOINT ["java","-jar","app.jar","--spring.profiles.active=${SPRING_PROFILES_ACTIVE:dev}"]
+   ```
