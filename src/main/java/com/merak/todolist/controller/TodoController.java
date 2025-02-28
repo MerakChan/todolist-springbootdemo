@@ -1,5 +1,6 @@
 package com.merak.todolist.controller;
 
+import com.example.greeting.service.GreetingService;
 import com.merak.todolist.domain.dto.PageResponseDTO;
 import com.merak.todolist.domain.entity.Todo;
 import com.merak.todolist.service.TodoService;
@@ -18,7 +19,7 @@ import java.util.List;
 public class TodoController {
 
     private final TodoService todoService;
-
+    private final GreetingService greetingService;
     @GetMapping
     public ResponseEntity<PageResponseDTO<Todo>> getTodos(
             @RequestParam(defaultValue = "0") int page,
@@ -28,6 +29,11 @@ public class TodoController {
         try {
             List<Todo> todos = todoService.getTodosWithPagination(page, size, isCompleted);
             long total = todoService.getTotalCount(isCompleted);
+
+            // 测试调用自定义的starter
+            String greet = greetingService.greet();
+            log.info("Greeting: {}", greet);
+
             log.info("成功获取待办事项列表 - 总数: {}", total);
             return ResponseEntity.ok(PageResponseDTO.of(todos, total, page, size));
         } catch (Exception e) {
