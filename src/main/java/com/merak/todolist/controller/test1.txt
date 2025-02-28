@@ -1,1 +1,7 @@
 这只是一个测试文本，用于测试代理情况下git提交代码到github
+总结：在正常运行
+ git config --global --unset http.proxy
+ git config --global --unset https.proxy
+ 后，git没有使用代理，无论电脑clash有没有开都不会影响git上传，如果退出clash再重新进入clash，就需要重新执行
+ git config --global --unset http.proxy
+ git config --global --unset https.proxy
