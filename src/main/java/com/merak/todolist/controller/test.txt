@@ -1,1 +1,8 @@
 这只是一个测试文本，用于测试代理情况下git提交代码到github
+
+
+---得出结论：若当前网络不需要代理，执行以下命令清除Git的代理设置再提交：
+
+        bash
+        git config --global --unset http.proxy
+        git config --global --unset https.proxy
