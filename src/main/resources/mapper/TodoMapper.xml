@@ -48,7 +48,7 @@
         ORDER BY id DESC
     </select>
 
-    <insert id="insert" parameterType="com.merak.todolist.domain.entity.Todo">
+    <insert id="insert" parameterType="com.merak.todolist.domain.entity.Todo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO todo (value, is_completed)
         VALUES (#{value}, #{isCompleted})
     </insert>
@@ -68,4 +68,8 @@
         SELECT * FROM todo
         WHERE id = #{id}
     </select>
+
+    <update id="resetAutoIncrement">
+        ALTER TABLE todo AUTO_INCREMENT = 1
+    </update>
 </mapper>

@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>com.merak</groupId>
-    <artifactId>todo-list</artifactId>
+    <artifactId>Todo-List-Backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>todo-list</name>
+    <name>Todo-List-Backend</name>
     <description>Todo List Backend Project</description>
     
     <parent>
@@ -63,6 +63,8 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
+
+        <!--自定义的欢迎sstarter-->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>greeting-spring-boot-starter</artifactId>

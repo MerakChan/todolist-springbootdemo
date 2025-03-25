@@ -13,9 +13,3 @@ mybatis:
     type-aliases-package: com.example.todolist.entity
     configuration:
         map-underscore-to-camel-case: true
-
-# 自定义starter参数
-greeting:
-    default-user: 使用者！
-    # 自定义问候语模板
-    template: 你好呀好呀好呀，{user}！

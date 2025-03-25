@@ -103,6 +103,10 @@ public class TodoServiceImpl implements TodoService {
             throw new RuntimeException("Todo item not found with id: " + id);
         }
         boolean result = todoMapper.deleteById(id) > 0;
+        if (result) {
+            todoMapper.resetAutoIncrement();
+            log.debug("重置自增ID成功");
+        }
         log.debug("删除待办事项结果 - ID: {}, 是否成功: {}", id, result);
         return result;
     }

@@ -13,3 +13,11 @@ mybatis:
   type-aliases-package: com.example.todolist.entity
   configuration:
     map-underscore-to-camel-case: true
+
+greeting:
+  template: 欢迎使用todolist-极简待办，{user}
+  default-user: 帅哥！
+
+logging:
+  level:
+    com.example.greeting: debug

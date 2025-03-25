@@ -29,11 +29,6 @@ public class TodoController {
         try {
             List<Todo> todos = todoService.getTodosWithPagination(page, size, isCompleted);
             long total = todoService.getTotalCount(isCompleted);
-
-            // 测试调用自定义的starter
-            String greet = greetingService.greet();
-            log.info("Greeting: {}", greet);
-
             log.info("成功获取待办事项列表 - 总数: {}", total);
             return ResponseEntity.ok(PageResponseDTO.of(todos, total, page, size));
         } catch (Exception e) {
